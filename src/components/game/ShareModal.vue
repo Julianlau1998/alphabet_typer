@@ -1,4 +1,4 @@
-<template>
+git branch -M main<template>
   <div class="modal is-active">
     <div class="modal-background"></div>
     <div class="modal-content">
@@ -32,7 +32,7 @@ export default {
             this.$emit('closeShareModal')
         },
         share () {
-            var url = "https://alphabet-typer.com"
+            var url = "https://alphabet-typer.netlify.app"
             var text = `I Just typed the alphabet in ${this.time} seconds. How fast can you go?`
             window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0')
         }
