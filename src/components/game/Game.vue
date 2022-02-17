@@ -83,7 +83,8 @@ export default {
     },
     methods: {
         changeLetter (letter) {
-            if (letter.length) letter = letter.slice(-1)
+            if (letter === null) return
+            letter = letter.slice(-1)
             if (!this.started) this.startTimer()
             if (this.alphabet.includes(letter.toLowerCase())) {
                 this.inputLetter = letter
@@ -131,16 +132,15 @@ export default {
                 this.records.push(this.timer.toFixed(2))
             } else if (this.timer < this.records[4]) {
                 this.records[4] = this.timer.toFixed(2)
+            } else {
+                return
             }
             for (let i=0; i<this.records.length; i++) {
                 this.records[i] = parseFloat(this.records[i])
             }
-            console.log(this.records)
-            console.log(this.records.sort())
             this.recordsSet = true
             this.records = this.records.sort(function(a, b){return a-b});
             this.storeRecords(this.records)
-            this.storeRecords()
         },
         storeRecords () {
             localStorage.setItem('records', JSON.stringify(this.records))
