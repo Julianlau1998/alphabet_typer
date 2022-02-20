@@ -3,7 +3,7 @@
 
 
 html {
-    background-color: #2A2D34;
+    background-color: $mainBackground;
 }
 
 body {
@@ -43,7 +43,7 @@ body {
     height: 2.4rem;
     border: 2px solid $primary;
     border-radius: 10px;
-    background-color: $mainBackground;
+    background-color: transparent;
     color: $secondary;
     font-size: 17px;
     padding: 0 0.5rem 0 0.5rem;
@@ -60,6 +60,15 @@ p {
     cursor: pointer;
 }
 
+a.dropdown-item {
+    padding-right: 1rem;
+
+}
+
+.dropdown-menu {
+    min-width: 7rem;
+}
+
 
 //helpers
 .is-primary {
@@ -68,6 +77,15 @@ p {
 .is-secondary {
     color: $secondary;
 }
+
+.is-third {
+    color: $third
+}
+
+.is-fourth {
+    color: $fourth
+}
+
 .is-white {
     color: $white;
 }
@@ -76,4 +94,26 @@ p {
 }
 .mt-7 {
     margin-top: 4rem !important;
+}
+.mb-negative-1 {
+    margin-bottom: -0.25rem;
+}
+.mb-negative-2 {
+    margin-bottom: -0.5rem;
+}
+
+.mt-negative-1 {
+    margin-top: -0.25rem !important;
+}
+.mt-negative-2 {
+    margin-top: -0.5rem !important;
+}
+.mt-negative-3 {
+    margin-top: -0.75rem !important;
+}
+.mt-negative-4 {
+    margin-top: -1rem !important;
+}
+.mt-negative-5 {
+    margin-top: -1.5rem !important;
 }

@@ -1,15 +1,25 @@
 module.exports = {
     pwa: {
       name: 'Alphabet Typer',
-      themeColor: '#2A2D34',
-      msTileColor: '#2A2D34',
-      navigationColor: "#2A2D34",
-      navigationColorDark: "#2A2D34",
-      navigationDividerColor: "#2A2D34",
-      navigationDividerColorDark: "#2A2D34",
-      backgroundColor: '#2A2D34',
+      themeColor: '#122933',
+      msTileColor: '#122933',
+      navigationColor: "#122933",
+      navigationColorDark: "#122933",
+      navigationDividerColor: "#122933",
+      navigationDividerColorDark: "#122933",
+      backgroundColor: '#122933',
       appleMobileWebAppCapable: 'yes',
       appleMobileWebAppStatusBarStyle: 'default',
     },
+    devServer: {
+      host: '0.0.0.0',
+      disableHostCheck: true,
+      proxy: {
+        '^/api/*': {
+          target: 'http://192.168.178.58:8081',
+          changeOrigin: true
+        }
+      }
+    }
   }
   

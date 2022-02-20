@@ -14,6 +14,7 @@
         placeholder="Start The Alphabet"
         ref="letterInput"
         @click="scrollDown"
+        @keydown.enter = reset
         autofocus
     >
     <h3 class="heading is-size-1 mt-4 is-primary">
@@ -22,7 +23,6 @@
     </h3>
     <button class="button is-secondary-border mt-4" @click="reset">
         Reset
-        <!-- <i class="fas fa-arrow-left ml-2" @click="reset()"></i> -->
         <i class="fas fa-eraser ml-2" @click="reset()"></i>
     </button>
 
@@ -30,20 +30,45 @@
         How fast can you type the letters of the alphabet?
         Just start with an 'A' and the timer will start to.
     </p>
-    <div v-else class="mt-5 is-white">
-        <h1 class="heading is-size-4">
-            Your Records:
-        </h1>
-        <p
-            v-for="(record, recordsIndex) in records"
-            :key="recordsIndex"
-            class="text"
-        >
-            {{ record }}s
-        </p>
+    <div class="columns is-justify-content-center has-text-start mt-5">
+        <div v-if="records.length" class="column is-3 mt-5 is-white">
+            <h1 class="heading is-size-4 is-fourth is-italic">
+                Your <br> Records:
+            </h1>
+            <p
+                v-for="(record, recordsIndex) in records"
+                :key="recordsIndex"
+                class="text"
+            >
+                {{`${recordsIndex+1}. ${record}s` }}
+            </p>
+        </div>
+
+        <div class="column is-3 mt-5 is-white">
+            <div class="columns is-justify-content-flex-end mb-0">
+                <div class="column is-8">
+                    <h1 class="heading is-size-4 is-third is-italic mb-negative-2">
+                        All <br> Records:
+                    </h1>
+                </div>
+                <div class="column is-2">
+                    <Dropdown
+                        @setFilter="setFilter"
+                        :options="recordOptions"
+                    />
+                </div>
+            </div>
+            <p
+                v-for="(record, fetchedRecordsIndex) in fetchedRecords"
+                :key="fetchedRecordsIndex"
+                class="text"
+            >
+                {{`${fetchedRecordsIndex+1}. ${record.username}: ${record.record}s`}}
+            </p>
+        </div>
     </div>
-    <shareModal 
-        @closeShareModal="showShareModal=false"
+    <ShareModal 
+        @closeShareModal="closeShareModal"
         v-if="showShareModal"
         :time="timer.toFixed(2)"
     />
@@ -51,10 +76,13 @@
 </template>
 
 <script>
-import shareModal from '@/components/game/ShareModal.vue'
+import ShareModal from '@/components/game/ShareModal.vue'
+import Dropdown from '@/components/helpers/Dropdown.vue'
+import { mapActions, mapState } from 'vuex'
 export default {
     components: {
-        shareModal
+        ShareModal,
+        Dropdown
     },
     data () {
         return {
@@ -68,7 +96,23 @@ export default {
             stopTimer: false,
             recordsSet: false,
             records: [],
-            showShareModal: false
+            showShareModal: false,
+            limit: '10',
+            recordOptions: [
+                { name: 'All Time', value: 0},
+                { name: 'Today', value: 1},
+                { name: 'This Week', value: 7},
+                { name: 'This Month', value: 30},
+                { name: 'This Year', value: 365}
+            ]
+        }
+    },
+    computed: {
+        ...mapState([
+            'recordModule'
+        ]),
+        fetchedRecords () {
+            return this.recordModule.records.data
         }
     },
     watch: {
@@ -80,8 +124,12 @@ export default {
     },
     created () {
         this.getRecords(false)
+        this.getAll({limit: this.limit})
     },
     methods: {
+        ...mapActions({
+            getAll: 'recordModule/getAll'
+        }),
         changeLetter (letter) {
             if (letter === null) return
             letter = letter.slice(-1)
@@ -145,6 +193,14 @@ export default {
         storeRecords () {
             localStorage.setItem('records', JSON.stringify(this.records))
             this.showShareModal = true
+        },
+        setFilter (filter) {
+            console.log(filter)
+            this.getAll({limit: this.limit, filter: filter})
+        },
+        closeShareModal () {
+            this.getAll({limit: this.limit})
+            this.showShareModal = false
         }
     }
 }
