@@ -155,6 +155,7 @@ export default {
             },10)
         },
         reset () {
+            if (this.showShareModal) return
             this.$refs.letterInput.focus()
             this.stopTimer = true
             this.letterPosition = 0
