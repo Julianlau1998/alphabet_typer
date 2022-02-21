@@ -15,6 +15,14 @@
 import Game from '@/components/game/Game.vue'
 export default {
   name: 'Home',
+  metaInfo: {
+      title: 'Alphabet Typer',
+      titleTemplate: '%s | Type The Alphabet As Fast As You Can',
+      htmlAttrs: {
+        lang: 'en',
+        amp: true
+      }
+    },
   components: {
     Game
   }
