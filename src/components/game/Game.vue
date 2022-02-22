@@ -168,7 +168,7 @@ export default {
         },
         scrollDown () {
             window.scroll({
-                top: 100,
+                top: 110,
                 behavior: "smooth"
             });
         },
