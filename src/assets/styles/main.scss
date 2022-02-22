@@ -117,3 +117,8 @@ a.dropdown-item {
 .mt-negative-5 {
     margin-top: -1.5rem !important;
 }
+
+// Prevent horizontal scrolling
+.columns {
+    max-width: 100%;
+}

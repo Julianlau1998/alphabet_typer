@@ -16,10 +16,11 @@ git branch -M main<template>
                 <input
                     v-model="username"
                     type="text"
-                    class="input is-custom-input"
+                    class="is-custom-input"
                     placeholder="Usersame"
                     @keydown.enter="submitRecord"
                     maxlength="15"
+                    required
                 >
             </div>
             <div class="column is-2">
@@ -36,13 +37,6 @@ git branch -M main<template>
             Close
         </button>
     </div>
-    <button
-        @click="close()"
-        class="modal-close is-large"
-        aria-label="close"
-    >
-        Close
-    </button>
   </div>
 </template>
 
@@ -74,6 +68,7 @@ export default {
             window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0')
         },
         submitRecord () {
+            if (!this.username.length) return
             this.storeRecord({
                 record:   parseFloat(this.time),
                 username: this.username

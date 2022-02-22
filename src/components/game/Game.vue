@@ -104,7 +104,8 @@ export default {
                 { name: 'This Week', value: 7},
                 { name: 'This Month', value: 30},
                 { name: 'This Year', value: 365}
-            ]
+            ],
+            filter: ''
         }
     },
     computed: {
@@ -196,11 +197,11 @@ export default {
             this.showShareModal = true
         },
         setFilter (filter) {
-            console.log(filter)
+            this.filter = filter
             this.getAll({limit: this.limit, filter: filter})
         },
         closeShareModal () {
-            this.getAll({limit: this.limit})
+            this.getAll({limit: this.limit, filter: this.filter})
             this.showShareModal = false
         }
     }
