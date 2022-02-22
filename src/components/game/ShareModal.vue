@@ -8,7 +8,7 @@ git branch -M main<template>
             {{time}}
         </h1>
         <p @click="share()" class="text is-white mt-5 is-share-text">
-            Share Youre Result
+            Share Your Result
             <i class="fas fa-share ml-2 is-secondary"></i>
         </p>
         <div v-if="!submitted" class="columns mt-5 is-justify-content-center">
@@ -29,7 +29,7 @@ git branch -M main<template>
                     type="submit"
                     class="button is-primary"
                 >
-                    Submit Your Result
+                    Submit Result
                 </button>
             </div>
         </div>
