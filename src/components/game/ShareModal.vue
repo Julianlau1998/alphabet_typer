@@ -20,6 +20,7 @@ git branch -M main<template>
                     placeholder="Usersame"
                     @keydown.enter="submitRecord"
                     maxlength="15"
+                    autofocus
                     required
                 >
             </div>
@@ -55,6 +56,9 @@ export default {
             submitted: false
         }
     },
+    created () {
+        this.username = this.getUsername()
+    },
     methods: {
         ...mapActions({
             storeRecord: 'recordModule/store'
@@ -74,9 +78,18 @@ export default {
                 username: this.username
             })
                 .then(() => {
+                    localStorage.setItem('username', JSON.stringify(this.username))
                     this.submitted = true
                     this.$emit('submitted')
                 })
+        },
+        getUsername () {
+            const storedUsername = JSON.parse(localStorage.getItem('username'))
+            if (storedUsername === undefined || storedUsername === null) {
+                this.username = ''
+                return
+            } 
+            return storedUsername
         }
     }
 }
