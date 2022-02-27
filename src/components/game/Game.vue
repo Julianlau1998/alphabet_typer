@@ -129,11 +129,11 @@ export default {
         }
     },
     created () {
-        this.getRecords(false)
-        this.getAll({limit: this.limit})
         if(navigator.share !== undefined) {
             this.shareAvailable = true
         }
+        this.getRecords(false)
+        this.getAll({limit: this.limit})
     },
     methods: {
         ...mapActions({
