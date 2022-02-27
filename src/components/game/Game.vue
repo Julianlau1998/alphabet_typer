@@ -100,10 +100,10 @@ export default {
             limit: '10',
             recordOptions: [
                 { name: 'All Time', value: 0},
-                { name: 'Today', value: 1},
-                { name: 'This Week', value: 7},
-                { name: 'This Month', value: 30},
-                { name: 'This Year', value: 365}
+                { name: 'Last Day', value: 1},
+                { name: 'Last Week', value: 7},
+                { name: 'Last Month', value: 30},
+                { name: 'Last Year', value: 365}
             ],
             filter: ''
         }
