@@ -30,6 +30,22 @@ body {
         color: $primary;
         border: 2px solid $primary;
     }
+
+    &.is-third-border {
+        border: 2px solid $third !important;
+    }
+    &.is-third-border:hover {
+        color: $fourth;
+        border: 2px solid $third;
+    }
+
+    &.is-fourth-border {
+        border: 2px solid $fourth !important;
+    }
+    &.is-fourth-border:hover {
+        color: $fourth;
+        border: 2px solid $fourth;
+    }
 }
 
 .button:focus {

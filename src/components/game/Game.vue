@@ -67,6 +67,10 @@
             </p>
         </div>
     </div>
+    <button v-if="shareAvailable" class="button is-fourth-border px-5 py-5 mt-6 mb-6">
+      Share this App
+      <i class="fas fa-share ml-4 is-secondary" />
+    </button>
     <ShareModal 
         @closeShareModal="closeShareModal"
         v-if="showShareModal"
@@ -105,7 +109,8 @@ export default {
                 { name: 'Last Month', value: 30},
                 { name: 'Last Year', value: 365}
             ],
-            filter: ''
+            filter: '',
+            shareAvailable: false
         }
     },
     computed: {
@@ -126,6 +131,9 @@ export default {
     created () {
         this.getRecords(false)
         this.getAll({limit: this.limit})
+        if(navigator.share !== undefined) {
+            this.shareAvailable = true
+        }
     },
     methods: {
         ...mapActions({
@@ -203,6 +211,12 @@ export default {
         closeShareModal () {
             this.getAll({limit: this.limit, filter: this.filter})
             this.showShareModal = false
+        },
+        recommend () {
+            navigator.share({
+                "title": 'How fast can You type the alphabet? Test your Typing skills with Alphabet Typer',
+                "text": 'https://alphabet-typer.com'
+            })
         }
     }
 }
