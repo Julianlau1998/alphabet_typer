@@ -67,7 +67,7 @@
             </p>
         </div>
     </div>
-    <button v-if="shareAvailable" class="button is-fourth-border px-5 py-5 mt-6 mb-6">
+    <button v-if="shareAvailable" @click="recommend" class="button is-fourth-border px-5 py-5 mt-6 mb-6">
       Share this App
       <i class="fas fa-share ml-4 is-secondary" />
     </button>
