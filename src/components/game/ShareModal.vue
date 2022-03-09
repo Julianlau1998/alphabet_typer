@@ -67,7 +67,14 @@ export default {
             this.$emit('closeShareModal')
         },
         share () {
-            var url = "https://alphabet-typer.netlify.app"
+            if (navigator.share) {
+                navigator.share({
+                    "title": 'Alphabet Typer',
+                    "text": `I Just typed the alphabet in ${this.time} seconds. How fast can you go? https://play.google.com/store/apps/details?id=com.alphabet_typer.app`
+                })
+                return
+            }
+            var url = 'https://play.google.com/store/apps/details?id=com.alphabet_typer.app'
             var text = `I Just typed the alphabet in ${this.time} seconds. How fast can you go?`
             window.open('http://twitter.com/share?url='+encodeURIComponent(url)+'&text='+encodeURIComponent(text), '', 'left=0,top=0,width=550,height=450,personalbar=0,toolbar=0,scrollbars=0,resizable=0')
         },
