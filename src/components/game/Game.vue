@@ -156,6 +156,7 @@ export default {
             }
         },
         startTimer () {
+            this.stopTimer = false
             this.started = true
             const timerInterval = setInterval(() => {
                 if (this.stopTimer) {
@@ -215,9 +216,10 @@ export default {
         closeShareModal () {
             this.getAll({limit: this.limit, filter: this.filter})
             this.showShareModal = false
+            this.$refs.letterInput.focus()
         },
         recommend () {
-            navigator.share({
+            navigator.share({ 
                 "title": 'How fast can You type the alphabet? Test your Typing skills with Alphabet Typer',
                 "text": 'https://play.google.com/store/apps/details?id=com.alphabet_typer.app'
             })
