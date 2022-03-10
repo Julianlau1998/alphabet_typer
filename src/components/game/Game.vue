@@ -26,7 +26,7 @@
         <i class="fas fa-eraser ml-2" @click="reset()"></i>
     </button>
 
-    <p v-if="!records.length" class="mt-6 is-white">
+    <p v-if="!records.length" class="mt-6 is-white px-3">
         How fast can you type the letters of the alphabet?
         Just start with an 'A' and the timer will start to.
     </p>
