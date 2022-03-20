@@ -10,7 +10,7 @@
     <meta name="twitter:title" content="Type The Alphabet" />
     <meta name="twitter:description" content="Type all the letters of the alphabet as fast you can" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>Type The Alphabet</title>
+    <title>Type The Alphabet as fast as you can</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
@@ -29,17 +29,27 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <h1 class="is-seo-tag">
+    <h2 id="header" class="is-seo-tag">
       Type The Alphabet
-    </h1>
-    <h2 class="is-seo-tag">
+    </h2>
+    <h2 id="sub-header" class="is-seo-tag">
       Type the Alphabet as fast as you can
     </h2>
-    <img class="is-seo-tag is-icon" src="https://alphabet-typer.com/img/icons/android-chrome-512x512.png" alt="App icon of Type the alphabet">
-    <p class="is-seo-tag">
-      <b>
-        What is "Type the alphabet"?
-      </b>
+    <img id="app-icon" class="is-seo-tag is-icon" src="https://alphabet-typer.com/img/icons/android-chrome-512x512.png" alt="App icon of Type the alphabet">
+    <a class="is-seo-tag" id="start" href="/home">
+      Start Page
+    </a>
+    <a class="is-seo-tag" id="data-security" href="/data-security">
+      data-security
+    </a>
+    <a class="is-seo-tag" id="info" href="/info">
+      info
+    </a>
+    <a class="is-seo-tag" id="game" href="/game">
+      game
+    </a>
+    <p id="main-content" class="is-seo-tag">
+      What is "Type the alphabet"?
       <br>
       You can test how fast you can type the alphabet.
       Compete with your friends and climb up on the leaderboard.
@@ -52,41 +62,41 @@
 
       And of course you can also see who has the best times at typing the alphabet of all time.
       Can you get into the top ten of the best times?
-      <b>Just try it out now.</b>
+      Just try it out now.
 
       One tip: If you press enter you can restart the timer and start again so you wont have to finish the entire alphabet after making a mistake.
     </p>
-    <h1 class="is-seo-tag">
+    <h1 id="availability" class="is-seo-tag">
       App Availability
     </h1>
-    <p class="is-seo-tag">
-      Type The Alphabet is working on mobile and desktop, and is available in the following app stores
+    <p id="explanation" class="is-seo-tag">
+      Type The Alphabet is working on mobile and desktop as well as any tablet, and is available in the following app stores
     </p>
-    <h3 class="is-seo-tag">
-      <b>Google play:</b>
+    <h3 id="play-store" class="is-seo-tag">
+      <b>Google play store:</b>
     </h3>
-    <a class="is-seo-tag" href="https://play.google.com/store/apps/details?id=com.alphabet_typer.app">
+    <a id="play-store-link" class="is-seo-tag" href="https://play.google.com/store/apps/details?id=com.alphabet_typer.app">
       Get it on Google Play
     </a>
-    <h3 class="is-seo-tag">
+    <h3 id="app-store" class="is-seo-tag">
       <b>Apple App Store</b>
     </h3>
-    <a class="is-seo-tag" href="https://apps.apple.com/gb/app/alphabet-typer/id1610788763">
+    <a id="app-store-link" class="is-seo-tag" href="https://apps.apple.com/gb/app/alphabet-typer/id1610788763">
       Get it from the App Store
     </a>
-    <h2 class="is-seo-tag">
+    <h2 id="data-security" class="is-seo-tag">
       See our data-security policy:
     </h2>
-    <a class="is-seo-tag" href="https://app-mynotes.com/data-security">
+    <a id="data-security-link" class="is-seo-tag" href="https://app-mynotes.com/data-security">
       Data Security
     </a>
-    <p class="is-seo-tag is-footer">
-      Developed by Julian Lau
+    <p id="footer" class="is-seo-tag is-footer">
+      This app was developed by Julian Lau
     </p>
-    <h3 class="is-seo-tag">
-      See all of my other apps:
+    <h3 id="other-apps" class="is-seo-tag">
+      Take a look at all of my other apps:
     </h3>
-    <p class="is-seo-tag">
+    <p id="other-apps-links" class="is-seo-tag">
       <b>
         UUID Generator:
       </b>
@@ -98,15 +108,19 @@
       <a href="https://app-mynotes.com/">Try MyNotes</a>
       <br>
       <b>
-        MyNotes:
+        Libria:
       </b>
       <a href="https://libria-app.com/">Try Libria</a>
       <br>
-      <b>
         PayPal Fee Calculator:
-      </b>
       <a href="https://paypal-fee-calculator.netlify.app/">Try Libria</a>
     </p>
+    <p class="is-seo-tag" id="thank-you">
+      Thank You for unsing "Type the alphabet" and have fun getting into the leaderboard
+    </p>
+    <a class="is-seo-tag" href="#header">
+      Go back to the top
+    </a>
     <div id="app">
     </div>
     <!-- built files will be auto injected -->
