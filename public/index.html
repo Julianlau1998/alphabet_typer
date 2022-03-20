@@ -10,7 +10,7 @@
     <meta name="twitter:title" content="Type The Alphabet" />
     <meta name="twitter:description" content="Type all the letters of the alphabet as fast you can" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>Type The Alphabet as fast as you can</title>
+    <title>Type The Alphabet faster than your friends</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
@@ -29,9 +29,9 @@
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <h2 id="header" class="is-seo-tag">
+    <h1 id="header" class="is-seo-tag">
       Type The Alphabet
-    </h2>
+    </h1>
     <h2 id="sub-header" class="is-seo-tag">
       Type the Alphabet as fast as you can
     </h2>
@@ -66,9 +66,9 @@
 
       One tip: If you press enter you can restart the timer and start again so you wont have to finish the entire alphabet after making a mistake.
     </p>
-    <h1 id="availability" class="is-seo-tag">
+    <h2 id="availability" class="is-seo-tag">
       App Availability
-    </h1>
+    </h2>
     <p id="explanation" class="is-seo-tag">
       Type The Alphabet is working on mobile and desktop as well as any tablet, and is available in the following app stores
     </p>
@@ -115,8 +115,20 @@
         PayPal Fee Calculator:
       <a href="https://paypal-fee-calculator.netlify.app/">Try Libria</a>
     </p>
+    <h3 class="is-seo-tag">
+      Technologies
+    </h3>
+    <p class="is-seo-tag" id="">
+      This app was developed in the JavaScript framework Vue js.
+      For the stylung of the app, the  css framework bulma was used and different icon are coming from fontawesome
+      The backend to handle the submitted results is written in Go with the echo http framework and writes the received data
+      into a postgres database.
+      The deployment of the app happens through the google cloud service "cloud run"
+    </p>
     <p class="is-seo-tag" id="thank-you">
-      Thank You for unsing "Type the alphabet" and have fun getting into the leaderboard
+      Thank You for unsing "Type the alphabet". If you like the app, feel free to share it with your friends and familiy or on social medie
+      because the more poople are using "Type The Alphabet", the more fun it is for everyone to compete with each other.
+      Now I wish you a great day and I hope you have a lot of fun getting into the leaderboard of Type The Alphabet.
     </p>
     <a class="is-seo-tag" href="#header">
       Go back to the top
