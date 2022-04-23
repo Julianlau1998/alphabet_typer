@@ -75,6 +75,7 @@
       Share this App
       <i class="fas fa-share ml-4 is-secondary" />
     </button>
+    
     <ShareModal 
         @closeShareModal="closeShareModal"
         v-if="showShareModal"
@@ -123,6 +124,9 @@ export default {
         ]),
         fetchedRecords () {
             return this.recordModule.records.data
+        },
+        iOS () {
+            return this.$store.state.iOS
         }
     },
     watch: {
@@ -221,7 +225,7 @@ export default {
         recommend () {
             navigator.share({ 
                 "title": 'How fast can You type the alphabet? Test your Typing skills with Alphabet Typer',
-                "text": 'https://play.google.com/store/apps/details?id=com.alphabet_typer.app'
+                "text": !this.iOS ? 'https://play.google.com/store/apps/details?id=com.alphabet_typer.app' : 'https://apps.apple.com/us/app/alphabet-typer/id1610788763'
             })
         }
     }
