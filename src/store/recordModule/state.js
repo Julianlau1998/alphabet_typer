@@ -1,7 +1,8 @@
 export default {
   records: {
     loading: false,
-    data: []
+    data: [],
+    load_more: true
   },
   err: null
 }

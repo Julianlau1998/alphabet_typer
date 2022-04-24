@@ -5,13 +5,13 @@ if (process.env.VUE_APP_ENV === "DEV") {
   host = ''
 }
 
-export async function getAll ({ commit }, {limit=10, filter=0}) {
+export async function getAll ({ commit }, {limit=10, filter=0, offset=0}) {
   return new Promise((resolve, reject) => {
     commit('GET_RECORDS')
     axios
-      .get(`${host}/api/records?limit=${limit}&filter=${filter}`)
+      .get(`${host}/api/records?limit=${limit}&filter=${filter}&offset=${offset}`)
       .then(response => {
-        commit('RECEIVE_RECORDS', {records: response.data})
+        commit('RECEIVE_RECORDS', {records: response.data, offset: offset})
         resolve()
       })
       .catch(err => {

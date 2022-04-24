@@ -91,6 +91,10 @@ a.dropdown-item {
 
 
 //helpers
+.is-pointer {
+    cursor: pointer;
+}
+
 .is-primary {
     color: $primary;
 }

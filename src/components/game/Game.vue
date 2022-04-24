@@ -63,7 +63,15 @@
                 :key="fetchedRecordsIndex"
                 class="text"
             >
-                {{`${fetchedRecordsIndex+1}. ${record.username}: ${record.record}s`}}
+                {{ `${fetchedRecordsIndex+1}. ${record.username}: ${record.record}s` }}
+            </p>
+            <p
+                v-if="loadMoreAvailable && fetchedRecords.length < 100"
+                class="is-primary is-pointer mb-2 mt-2"
+                @click="loadMore"
+            >
+                Load More 
+                <i class="fas fa-angle-down" />
             </p>
         </div>
     </div>
@@ -115,7 +123,8 @@ export default {
                 { name: 'Last Year', value: 365}
             ],
             filter: '',
-            shareAvailable: false
+            shareAvailable: false,
+            offset: 0
         }
     },
     computed: {
@@ -124,6 +133,12 @@ export default {
         ]),
         fetchedRecords () {
             return this.recordModule.records.data
+        },
+        loadMoreAvailable () {
+            return this.recordModule.records.load_more
+        },
+        username () {
+            return this.$store.state.username
         },
         iOS () {
             return this.$store.state.iOS
@@ -141,7 +156,7 @@ export default {
             this.shareAvailable = true
         }
         this.getRecords(false)
-        this.getAll({limit: this.limit})
+        this.getAll({limit: this.limit, filter: this.filter, offset: this.offset})
     },
     methods: {
         ...mapActions({
@@ -215,7 +230,12 @@ export default {
         },
         setFilter (filter) {
             this.filter = filter
+            this.offset = 0
             this.getAll({limit: this.limit, filter: filter})
+        },
+        loadMore () {
+            this.offset += 10
+            this.getAll({limit: this.limit, filter: this.filter, offset: this.offset})
         },
         closeShareModal () {
             this.getAll({limit: this.limit, filter: this.filter})
