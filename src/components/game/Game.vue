@@ -78,10 +78,17 @@
     <button
         v-if="shareAvailable"
         @click="recommend"
-        class="button is-fourth-border px-5 py-5 mt-6 mb-6"
+        class="button is-fourth-border is-external-button-first px-5 py-5 mx-4 mb-6"
     >
       Share this App
       <i class="fas fa-share ml-4 is-secondary" />
+    </button>
+    <button
+        v-if="!iOS"
+        @click="linkToStorePage()"
+        class="button is-fourth-border is-external-button-second px-5 py-5 mx-4 mb-6"
+    >
+      Rate this App
     </button>
     
     <ShareModal 
@@ -247,6 +254,9 @@ export default {
                 "title": 'How fast can You type the alphabet? Test your Typing skills with Alphabet Typer',
                 "text": !this.iOS ? 'https://play.google.com/store/apps/details?id=com.alphabet_typer.app' : 'https://apps.apple.com/us/app/alphabet-typer/id1610788763'
             })
+        },
+        linkToStorePage () {
+            window.location.href='https://play.google.com/store/apps/details?id=com.alphabet_typer.app&gl=DE'
         }
     }
 }

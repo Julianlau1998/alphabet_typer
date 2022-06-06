@@ -46,6 +46,10 @@ body {
         color: $fourth;
         border: 2px solid $fourth;
     }
+    &.is-external-button-first,
+    &.is-external-button-second {
+        margin-top: 3rem;
+    }
 }
 
 .button:focus {
@@ -66,7 +70,7 @@ body {
 }
 
 .gameWrapper {
-    height: 120vh;
+    height: 110vh;
 }
 p {
     font-size: 20px;
@@ -140,4 +144,15 @@ a.dropdown-item {
 }
 .mt-negative-5 {
     margin-top: -1.5rem !important;
+}
+
+@media (max-width: 620px) {
+    .button {
+        &.is-external-button-first {
+            margin-top: 0rem;
+        }
+        &.is-external-button-second {
+            margin-top: 0rem;
+        }
+    }
 }
