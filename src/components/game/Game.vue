@@ -76,7 +76,7 @@
         </div>
     </div>
     <button
-        v-if="shareAvailable"
+        v-if="shareAvailable && !iOS"
         @click="recommend"
         class="button is-fourth-border is-external-button-first px-5 py-5 mx-4 mb-6"
     >
@@ -162,6 +162,10 @@ export default {
         if(navigator.share !== undefined) {
             this.shareAvailable = true
         }
+        this.getRecords(false)
+        this.getAll({limit: this.limit, filter: this.filter, offset: this.offset})
+    },
+    mounted () {
         this.getRecords(false)
         this.getAll({limit: this.limit, filter: this.filter, offset: this.offset})
     },
