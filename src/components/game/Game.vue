@@ -165,7 +165,7 @@ export default {
             'recordModule'
         ]),
         iOS () {
-          return window.webkit && window.webkit.messageHandlers
+          return true
         },
         fetchedRecords () {
             return this.recordModule.records.data
@@ -177,7 +177,7 @@ export default {
             return this.$store.state.username
         },
         showCountdown () {
-          return this.countdown > 0 && this.countdown < 3600 && this.iOS
+          return this.countdown > 0 && this.countdown < this.totalWaitTime && this.iOS
         }
     },
     watch: {
