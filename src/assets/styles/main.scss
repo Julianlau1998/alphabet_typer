@@ -46,6 +46,14 @@ body {
         color: $fourth;
         border: 2px solid $fourth;
     }
+
+    &.is-black-border {
+        border: 2px solid #565656;
+    }
+    &.is-black-border:hover {
+        color: #565656;
+    }
+
     &.is-external-button-first,
     &.is-external-button-second {
         margin-top: 3rem;
@@ -91,6 +99,16 @@ a.dropdown-item {
 
 .modal-content {
     overflow: hidden;
+}
+
+.is-tries {
+    border: 1px solid $primary;
+    border-radius: 50px;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+    padding-top: 2px;
+    margin-bottom: -0.5rem;
 }
 
 

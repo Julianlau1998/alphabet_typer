@@ -1,9 +1,20 @@
 <template>
   <div class="gameWrapper">
+      <h1 v-if="iOS" class="is-secondary mt-3 is-tries">
+        {{ tries }}
+      </h1>
+      <span v-if="showCountdown && !watchAdClicked && iOS">
+        <p class="text mt-0 is-white mt-5">
+          New tries in {{ countdown }}s
+        </p>
+        <button @click="watchAd()" class="button is-third-border mt-5">
+          GetMoreTries
+        </button>
+      </span>
       <h1
         class="heading is-primary"
         :class="letterPosition >= 26 ? 'is-size-1' : 'is-large'"
-    >
+      >
           {{ alphabet[letterPosition] }}
       </h1>
       <input
@@ -96,16 +107,23 @@
         v-if="showShareModal"
         :time="timer.toFixed(2)"
     />
+    <TriesModal
+        @closeShareModal="closeTriesModal"
+        @watchAd="watchAd"
+        v-if="showNoTriesModal"
+    />
   </div>
 </template>
 
 <script>
 import ShareModal from '@/components/game/ShareModal.vue'
+import TriesModal from '@/components/game/TriesModal'
 import Dropdown from '@/components/helpers/Dropdown.vue'
 import { mapActions, mapState } from 'vuex'
 export default {
     components: {
         ShareModal,
+        TriesModal,
         Dropdown
     },
     data () {
@@ -131,13 +149,23 @@ export default {
             ],
             filter: '',
             shareAvailable: false,
-            offset: 0
+            offset: 0,
+            tries: 2,
+            showNoTriesModal: false,
+            dateOfTries: '',
+            countdown: 300,
+            totalWaitTime: 300,
+            interval: {},
+            watchAdClicked: false
         }
     },
     computed: {
         ...mapState([
             'recordModule'
         ]),
+        iOS () {
+          return window.webkit !== undefined
+        },
         fetchedRecords () {
             return this.recordModule.records.data
         },
@@ -147,8 +175,8 @@ export default {
         username () {
             return this.$store.state.username
         },
-        iOS () {
-            return this.$store.state.iOS
+        showCountdown () {
+          return this.countdown > 0 && this.countdown < 3600 && this.iOS
         }
     },
     watch: {
@@ -156,6 +184,13 @@ export default {
             if (val.toLowerCase() === this.alphabet[this.letterPosition]) {
                 this.letterPosition++
             }
+        },
+        countdown (val) {
+          if (val <= 0) {
+            clearInterval(this.interval)
+            this.tries = 5
+            this.setTriesInStorage()
+          }
         }
     },
     created () {
@@ -164,6 +199,12 @@ export default {
         }
         this.getRecords(false)
         this.getAll({limit: this.limit, filter: this.filter, offset: this.offset})
+
+        this.dateOfTries = JSON.parse(localStorage.getItem('timestamp'))
+        if (this.dateOfTries === null || this.dateOfTries === '') this.dateOfTries = new Date(Date.now())
+
+        this.getTriesFromStorage()
+        this.startCountdown()
     },
     mounted () {
         this.getRecords(false)
@@ -174,6 +215,10 @@ export default {
             getAll: 'recordModule/getAll'
         }),
         changeLetter (letter) {
+            if (this.tries <= 0 && this.iOS) {
+              this.showNoTriesModal = true
+              return
+            }
             if (letter === null) return
             letter = letter.slice(-1)
             if (!this.started) this.startTimer()
@@ -186,6 +231,8 @@ export default {
             }
         },
         startTimer () {
+            this.tries -= 1
+            this.setTriesInStorage()
             this.stopTimer = false
             this.started = true
             const timerInterval = setInterval(() => {
@@ -252,6 +299,51 @@ export default {
             this.getAll({limit: this.limit, filter: this.filter})
             this.showShareModal = false
             this.$refs.letterInput.focus()
+        },
+        closeTriesModal () {
+          this.showNoTriesModal = false
+          if (this.countdown >= 300 || this.countdown <= 0) this.startCountdown()
+        },
+        startCountdown () {
+          if (this.tries === 0) {
+            let timePassed = parseInt(new Date(Date.now()) - new Date(this.dateOfTries).getTime()) / 1000
+            timePassed = Math.round(timePassed)
+            if (timePassed >= this.totalWaitTime) {
+              this.tries = 5
+              this.setTriesInStorage()
+            } else {
+              this.countdown = this.totalWaitTime - timePassed
+              this.interval = setInterval(() => {
+                this.countdown -= 1
+              }, 1000)
+            }
+          }
+        },
+        watchAd () {
+          if (this.iOS && window.webkit.messageHandlers.toggleMessageHandler) {
+            window.webkit.messageHandlers.toggleMessageHandler.postMessage({
+              "message": 'Trigger reward-ad:'
+            });
+          }
+
+          this.watchAdClicked = true
+          this.showNoTriesModal = false
+          setTimeout(() => {
+            this.tries += 3
+            this.setTriesInStorage()
+            this.countdown = 0
+            this.watchAdClicked = false
+            this.reset()
+          },10000)
+        },
+        getTriesFromStorage () {
+          this.tries = JSON.parse(localStorage.getItem('tries'))
+          if (this.tries === null) this.tries = 5
+        },
+        setTriesInStorage () {
+          localStorage.setItem('tries', JSON.stringify(this.tries))
+          localStorage.setItem('timestamp', JSON.stringify(new Date(Date.now())))
+          this.dateOfTries = Date.now()
         },
         recommend () {
             navigator.share({ 
