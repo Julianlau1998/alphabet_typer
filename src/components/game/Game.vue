@@ -165,7 +165,7 @@ export default {
             'recordModule'
         ]),
         iOS () {
-          return window.webkit !== undefined
+          return window.webkit && window.webkit.messageHandlers
         },
         fetchedRecords () {
             return this.recordModule.records.data
