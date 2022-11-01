@@ -121,6 +121,7 @@ import TriesModal from '@/components/game/TriesModal'
 import Dropdown from '@/components/helpers/Dropdown.vue'
 import { mapActions, mapState } from 'vuex'
 export default {
+    name: 'Game-view',
     components: {
         ShareModal,
         TriesModal,

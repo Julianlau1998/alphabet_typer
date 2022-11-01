@@ -14,7 +14,7 @@
 <script>
 import Game from '@/components/game/Game.vue'
 export default {
-  name: 'Home',
+  name: 'Home-view',
   metaInfo: {
       title: 'Type The Alphabet',
       titleTemplate: '%s | Type The Alphabet As Fast As You Can',

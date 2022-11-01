@@ -39,7 +39,7 @@
 
 <script>
 export default {
-    name: 'dropdown',
+    name: 'dropdown-view',
     props: {
         options: {
             type: Array,
