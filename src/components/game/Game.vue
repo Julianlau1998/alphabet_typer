@@ -165,7 +165,7 @@ export default {
             'recordModule'
         ]),
         iOS () {
-          return true
+          return window.webkit
         },
         fetchedRecords () {
             return this.recordModule.records.data
