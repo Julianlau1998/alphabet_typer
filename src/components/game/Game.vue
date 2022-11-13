@@ -86,7 +86,7 @@
             </p>
         </div>
     </div>
-    <button
+<!--    <button
         v-if="shareAvailable && !iOS"
         @click="recommend"
         class="button is-fourth-border is-external-button-first px-5 py-5 mx-4 mb-6"
@@ -100,7 +100,7 @@
         class="button is-fourth-border is-external-button-second px-5 py-5 mx-4 mb-6"
     >
       Rate this App
-    </button>
+    </button>-->
     
     <ShareModal 
         @closeShareModal="closeShareModal"
