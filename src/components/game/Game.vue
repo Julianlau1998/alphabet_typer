@@ -55,8 +55,8 @@
             </p>
         </div>
 
-        <div class="column is-3 mt-5 is-white">
-            <div class="columns is-justify-content-flex-end mb-0">
+        <div class="column is-3 mt-5 is-white pb-30">
+            <div class="columns is-justify-content-flex-end mb-0 ">
                 <div class="column is-8">
                     <h1 class="heading is-size-4 is-third is-italic mb-negative-2">
                         All <br> Records:
@@ -81,7 +81,7 @@
                 class="is-primary is-pointer mb-2 mt-2"
                 @click="loadMore"
             >
-                Load More 
+                Load More
                 <i class="fas fa-angle-down" />
             </p>
         </div>
@@ -101,8 +101,8 @@
     >
       Rate this App
     </button>-->
-    
-    <ShareModal 
+
+    <ShareModal
         @closeShareModal="closeShareModal"
         v-if="showShareModal"
         :time="timer.toFixed(2)"
@@ -347,7 +347,7 @@ export default {
           this.dateOfTries = Date.now()
         },
         recommend () {
-            navigator.share({ 
+            navigator.share({
                 "title": 'How fast can You type the alphabet? Test your Typing skills with Alphabet Typer',
                 "text": !this.iOS ? 'https://play.google.com/store/apps/details?id=com.alphabet_typer.app' : 'https://apps.apple.com/us/app/alphabet-typer/id1610788763'
             })
