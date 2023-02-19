@@ -1,11 +1,20 @@
 <template>
   <div id="app">
     <router-view/>
+    <AdCard v-if="!iOS" />
   </div>
 </template>
 
 <script>
+import AdCard from "@/components/ads/AdCard"
+
 export default {
+  components: { AdCard },
+  data () {
+    return {
+      iOS: false
+    }
+  },
   created () {
     this.iOS = [
       'iPad Simulator',
@@ -15,7 +24,6 @@ export default {
       'iPhone',
       'iPod'
     ].includes(navigator.platform) || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-    this.$store.state.iOS = this.iOS
   }
 }
 </script>
